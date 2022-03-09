@@ -7,6 +7,7 @@
 #### you should follow that my step to use efficient documents.
 >#### first) "ctl + f" push and I search that trying to do what I want.
 #### ex) "Load Channel.", "Find a channel"
+#### ex) 한국어도 지원합니다. "채널 불러오기", "채널 찾기"
 >#### second) Next also, We can take code sample when code you think is good.
 ### I hope you  well. :)
 
