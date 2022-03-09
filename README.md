@@ -93,9 +93,9 @@ print(respones)
 > ![image](https://user-images.githubusercontent.com/87273590/157487199-64abd89c-193e-42c3-aecf-ba12fbd51d49.png)
 > List them in order.  
 > Number of users viewed on YouTube to date: 281371  
-> Number of users subscribed to: 4290  
+> User Subscriptions: 4290  
 > Hide user subscriber count: false  
-> User Subscribers: 4
+> Number of user images: 4
 > This is just a tutorial, so please find the full-fledged one in the list below :)
 
 
