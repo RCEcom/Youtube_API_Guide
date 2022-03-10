@@ -281,5 +281,5 @@ print(respones)
 
 
 # API List!
-+ 
++ 특정 아이디에 대한 값 찾기, 유튜브 아이디로 찾기, Find value for specific ID, Find by YouTube ID
 
