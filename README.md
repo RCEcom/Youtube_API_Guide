@@ -100,7 +100,182 @@ print(respones)
 
 
 >## Using OAuth to Access User Accounts  
-> 
+> To access data about real users, you need to authenticate with OAuth.  
+> Let's look at the following sample code.  
+```python
+from googleapiclient.discovery import build
+API_key = "(your API KEY)"
+
+youtube = build("youtube", "v3", developerKey=API_key)
+#UUeAS7YuMOKpz39PD07O2p_w
+request = youtube.channels().list(
+                part="contentDetails",
+                forUsername="schafer5"
+        )
+
+
+respones = request.execute()
+
+print(respones)
+```  
+> Get the user's playlist ID.
+> If OAuth authentication is not performed, only basic information can be viewed.  
+```python
+'likes': '', 'uploads': 'UUCezIgC97PvUuR4_gbFUs5g'}}}]}
+```  
+```python
+{'kind': 'youtube#playlistItemListResponse', 'etag': 'CG3odeN9t4JPibirQ8aBIwYq8gA', 'nextPageToken': 'EAAaBlBUOkNBVQ', 'items': [{'kind': 'youtube#playlistItem', 'etag': 'ZamMnwWX4mu0an36qlsYH3MSSAg', 'id': 'VVVDZXpJZ0M5N1B2VXVSNF9nYkZVczVnLnZRUUVhU25RX2Jz', 'status': {'privacyStatus': 'public'}}, {'kind': 'youtube#playlistItem', 'etag': 'g8B_7Mc87o6BgvstV2vRopAhVls', 'id': 'VVVDZXpJZ0M5N1B2VXVSNF9nYkZVczVnLjFLT19IWnRIT1dJ', 'status': {'privacyStatus': 'public'}}, {'kind': 'youtube#playlistItem', 'etag': 'hPPdKXKLketdQ71g4SGdrb0gFqo', 'id': 'VVVDZXpJZ0M5N1B2VXVSNF9nYkZVczVnLmNvWmJPTTZFNDdJ', 'status': {'privacyStatus': 'public'}}, {'kind': 'youtube#playlistItem', 'etag': 'daxFi1dbhLeRmrwszyAh042lvTw', 'id': 'VVVDZXpJZ0M5N1B2VXVSNF9nYkZVczVnLnRoNV85d29GSm1r', 'status': {'privacyStatus': 'public'}}, {'kind': 'youtube#playlistItem', 'etag': 'EJVhXB1vj-nstLtnZAHUq_uyAGk', 'id': 'VVVDZXpJZ0M5N1B2VXVSNF9nYkZVczVnLlJPNkp4RE9Wd0xR', 'status': {'privacyStatus': 'public'}}], 'pageInfo': {'totalResults': 230, 'resultsPerPage': 5}}
+```  
+> In order to see various undisclosed information, not public information, such as the following, you need to authenticate.  
+>![image](https://user-images.githubusercontent.com/87273590/157681346-0c4879ef-6380-4d2a-9da8-04148418c04f.png)  
+> Click On "OAuth client ID create"
+> ![image](https://user-images.githubusercontent.com/87273590/157681619-cf137280-acc7-40a1-8fb7-1b2d01fb7706.png)  
+> Click On "Consent screen configuration"    
+> ![image](https://user-images.githubusercontent.com/87273590/157681865-1d9a8de5-e554-45c0-9a19-72af8393935e.png)  
+> We will make it accessible to everyone.  
+> ![image](https://user-images.githubusercontent.com/87273590/157682161-154a9aeb-adaf-4f65-9a8f-f8cf0a04c06a.png)  
+> We'll just write your name down and we'll make it for you. Right now.  
+> ![image](https://user-images.githubusercontent.com/87273590/157682464-798cd7de-795a-439b-ab17-34d346956897.png)  
+> After that, press OAuth Client create ID again to enter, and the following screen will appear.  
+> There is no application for Python scripts. So we will run it as a web application.  
+> ![image](https://user-images.githubusercontent.com/87273590/157683110-3c291fab-3636-4462-acff-3eef50d5252a.png)  
+> set to localhost  
+> ![image](https://user-images.githubusercontent.com/87273590/157683521-91ae54ee-f3ac-4233-9311-b9fa0ac8f5d0.png)  
+> Then, download the json file.  
+> ![image](https://user-images.githubusercontent.com/87273590/157683733-bcf8ef4c-cea0-4836-b564-ea096b4e6e38.png)  
+> Edits the file name.  
+> ![image](https://user-images.githubusercontent.com/87273590/157683936-1f6794d9-b3f0-45dd-9d4b-f70869483d6e.png)  
+> json file to your working directory.  
+```python
+pip install google_auth
+pip install google-auth-oauthlib
+```  
+> Enter the code above to easily access Oauth authentication.  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_clients_secrets_file("client_secrets.json")
+
+API_key = "(your API KEY)"
+
+youtube = build("youtube", "v3", developerKey=API_key)
+request = youtube.playlistItems().list(
+                part="status",
+                playlistId="UUCezIgC97PvUuR4_gbFUs5g"
+        )
+
+
+respones = request.execute()
+
+print(respones)
+```  
+> If you have imported the OAulth protocol, you need to know the scope of the access (how far it is allowed).  
+> ![image](https://user-images.githubusercontent.com/87273590/157688431-4113d832-2019-4680-aa73-f0d765f7a4b5.png)  
+> Depends on the purpose, but we'll only narrow it down to verifying your YouTube account.  
+> ![image](https://user-images.githubusercontent.com/87273590/157689147-2449bd41-c6ac-48ed-a5cb-cbf4c89ebbe7.png)  
+> Would you like to display a message when accessing in the future?  
+> and The run_local_server code connects to the local server and obtains user rights.  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+     
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", scopes=["https://www.googleapis.com/auth/youtube.readonly"])
+
+flow.run_local_server(port=8080, prompt="consent")
+
+credentials = flow.credentials
+print(credentials.to_json())
+
+"""
+API_key = ""
+
+youtube = build("youtube", "v3", developerKey=API_key)
+#UUeAS7YuMOKpz39PD07O2p_w
+request = youtube.playlistItems().list(
+                part="status",
+                playlistId="UUCezIgC97PvUuR4_gbFUs5g"
+        )
+
+
+respones = request.execute()
+
+print(respones)
+"""
+```  
+> By setting it to "constent" in the prompt parameter, it gives the convenience of not having to check it next time.    
+> ![image](https://user-images.githubusercontent.com/87273590/157693430-edd641e3-c85d-4956-ad34-8075aaa6ed83.png)  
+> If it pops up with me, add user access list  
+> ![image](https://user-images.githubusercontent.com/87273590/157693530-85dac2c6-d532-4232-86a0-3945a2e5fc98.png)  
+> ![image](https://user-images.githubusercontent.com/87273590/157693589-050283f4-d9e1-40fa-a758-db211b1147b9.png)  
+> If it pops up like this, it's a success! good job  
+> Now we don't have to use the existing API.  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+     
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", scopes=["https://www.googleapis.com/auth/youtube.readonly"])
+
+flow.run_local_server(port=8080, prompt="consent")
+
+credentials = flow.credentials
+
+
+youtube = build("youtube", "v3", credentials=credentials)
+
+request = youtube.playlistItems().list(
+                part="status",
+                playlistId="UUCezIgC97PvUuR4_gbFUs5g"
+        )
+
+
+respones = request.execute()
+
+print(respones)
+```
+> As in the code above, pass it as credentials=credentials instead of passing it as APK_KEY.  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+     
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", scopes=["https://www.googleapis.com/auth/youtube.readonly"])
+
+flow.run_local_server(port=8080, prompt="consent", authorization_prompt_message='')
+
+credentials = flow.credentials
+
+
+youtube = build("youtube", "v3", credentials=credentials)
+
+request = youtube.playlistItems().list(
+                part="status, contentDetails",
+                playlistId="UUCezIgC97PvUuR4_gbFUs5g"
+        )
+
+
+respones = request.execute()
+
+for item in respones["items"]:
+    print(item["contentDetails"]["videoId"])
+
+print(respones)
+```
+> Using it a bit more, get the playlist videoID value. 5 is the default setting, so you need to increase it further.  
+> So the tutorial is over. Use a variety of APIs to create what you want!  
+
+
 ---
 
 
