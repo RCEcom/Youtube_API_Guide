@@ -110,7 +110,6 @@ from googleapiclient.discovery import build
 API_key = "(your API KEY)"
 
 youtube = build("youtube", "v3", developerKey=API_key)
-#UUeAS7YuMOKpz39PD07O2p_w
 request = youtube.channels().list(
                 part="contentDetails",
                 forUsername="schafer5"
@@ -200,7 +199,6 @@ print(credentials.to_json())
 API_key = ""
 
 youtube = build("youtube", "v3", developerKey=API_key)
-#UUeAS7YuMOKpz39PD07O2p_w
 request = youtube.playlistItems().list(
                 part="status",
                 playlistId="UUCezIgC97PvUuR4_gbFUs5g"
