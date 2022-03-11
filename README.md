@@ -21,7 +21,8 @@
 >> 2. Bulid enviornment to use API
 >> 3. Service connect  
 >> 4. Simple example
->> 5. Using OAuth to Access User Accounts
+>> 5. Using OAuth to Access User Accounts  
+>> 6. Write OAuth effectively
   
   
   
@@ -277,8 +278,150 @@ print(respones)
 > Using it a bit more, get the playlist videoID value. 5 is the default setting, so you need to increase it further.  
 > So the tutorial is over. Use a variety of APIs to create what you want!  
 
+>## Write OAuth effectively  
+```python
+flow.run_local_server(port=8080, prompt="consent", authorization_prompt_message="")
+```  
+> authorization_prompt_message="" Add the corresponding command to prevent the output window from appearing long.  
+> As you may not have noticed, access tokens expire quickly.  
+> So, we will simply understand how OAuth simple works, and write an automated script to get the expired token back.  
+> ![image](https://user-images.githubusercontent.com/87273590/157895678-ab7a1efa-f851-4a71-90da-f92c7de99b4d.png)  
+> First we request a token, and the Google servers send me back an access authorization code for the user.  
+> Next, in case the token expires, we write code to retrieve the token again and send it, and that amount comes from the server.  
+> That's what we've hit the code for now, and from now on, let's write an automated script that checks if it's expired and refreshes the token ourselves.  
+```python
+credentials = None
+```  
+> The authentication object will be put into a variable then when certain conditions are all met.  
+```python
+import os
+import pickle
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
 
----
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", 
+    scopes=["https://www.googleapis.com/auth/youtube.readonly"]
+            )
+
+flow.run_local_server(port=8080, prompt="consent", authorization_prompt_message="")
+
+credentials = None
+
+# token.pickle stores the user's credentials from previously successful logins
+if os.path.exists('token.pickle'):
+    print('Loading Credentials From File...')
+    with open('token.pickle', 'rb') as token:
+        credentials = pickle.load(token)
+
+credentials.to_json()
+```  
+> First check if the token exists.  
+```python
+import os
+import pickle
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", 
+    scopes=["https://www.googleapis.com/auth/youtube.readonly"]
+            )
+
+flow.run_local_server(port=8080, prompt="consent", authorization_prompt_message="")
+
+credentials = None
+
+# token.pickle stores the user's credentials from previously successful logins
+if os.path.exists('token.pickle'):
+    print('Loading Credentials From File...')
+    with open('token.pickle', 'rb') as token:
+        credentials = pickle.load(token)
+
+# If there are no valid credentials available, then either refresh the token or log in.
+if not credentials or not credentials.valid:
+    if credentials and credentials.expired and credentials.refresh_token:
+        print('Refreshing Access Token...')
+        credentials.refresh(Request())
+    else:
+        print('Fetching New Tokens...')
+        flow = InstalledAppFlow.from_client_secrets_file(
+            'client_secrets.json',
+            scopes=[
+                'https://www.googleapis.com/auth/youtube.readonly'
+            ]
+        )
+
+        flow.run_local_server(port=8080, prompt='consent',
+                              authorization_prompt_message='')
+        credentials = flow.credentials
+
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as f:
+            print('Saving Credentials for Future Use...')
+            pickle.dump(credentials, f)
+
+```  
+> Let me explain that code. Simply put, it just checks if the credential is invalid or doesn't exist, and runs the code accordingly.  
+> Don't try to analyze this code in detail. This is an essential part to write in the future.  
+```python
+import os
+import pickle
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+
+credentials = None
+    
+# token.pickle stores the user's credentials from previously successful logins
+if os.path.exists('token.pickle'):
+    print('Loading Credentials From File...')
+    with open('token.pickle', 'rb') as token:
+        credentials = pickle.load(token)
+
+# If there are no valid credentials available, then either refresh the token or log in.
+if not credentials or not credentials.valid:
+    if credentials and credentials.expired and credentials.refresh_token:
+        print('Refreshing Access Token...')
+        credentials.refresh(Request())
+    else:
+        print('Fetching New Tokens...')
+        flow = InstalledAppFlow.from_client_secrets_file(
+            'client_secrets.json',
+            scopes=[
+                'https://www.googleapis.com/auth/youtube.readonly'
+            ]
+        )
+
+        flow.run_local_server(port=8080, prompt='consent',
+                              authorization_prompt_message="")
+        credentials = flow.credentials
+
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as f:
+            print('Saving Credentials for Future Use...')
+            pickle.dump(credentials, f)
+    
+youtube = build("youtube", "v3", credentials=credentials)
+
+request = youtube.playlistItems().list(
+                part="status, contentDetails",
+                playlistId="(your uploads ID)",
+                maxResults=30
+        )
+
+
+respones = request.execute()
+
+for item in respones["items"]:
+    print(item["contentDetails"]["videoId"])
+```  
+> This is the final code.  
+---  
+
+
 
 
 
