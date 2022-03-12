@@ -423,7 +423,7 @@ for item in respones["items"]:
 
 
 
-# API List!
+# API List!(Parsing is possible even if it is not for a user account authenticated by OAuth. However, if they match, OAuth will be enabled. Please remember.)  
 + 활동(Activities)
 > 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=Enter%20the%20code%20above%20to%20easily%20access%20Oauth%20authentication.)  
 > 2)사용자가올린모든비디오영상설명보기,영상설명보기,모든영상설명보기,비디오영상설명  
@@ -432,3 +432,95 @@ for item in respones["items"]:
 > 5)사용자가올린모든영상제목보기  
 > 6)사용자가올린모든영상썸네일사진보기  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# By default, we use OAuth authenticated codes(  
+>OAuth not enabled  
+```python
+youtube = build("youtube", "v3", credentials=credentials)
+
+
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                channelId="(your channelId)",
+        )
+
+
+respones = request.execute()
+
+#code you want.
+for item in respones["items"]:
+    print(item["contentDetails"]["upload"]["videoId"])
+```  
+>If you want to increase the result(The initial return value is 5)  
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                channelId="(your channelId)",
+                maxResults=(number)
+        )
+```
+
+>OAuth enabled  
+```python
+youtube = build("youtube", "v3", credentials=credentials)
+
+
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                #home=True,
+                mine=True,
+                maxResults=30
+        )
+
+
+respones = request.execute()
+
+for item in respones["items"]:
+    print(item["contentDetails"]["upload"]["videoId"])
+```  
+>If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.  
