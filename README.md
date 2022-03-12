@@ -488,7 +488,7 @@ for item in respones["items"]:
   
   
   
-# I will use OAuth code enabled by default. 
+# I will use OAuth code enabled by default.([activated code]())  
 >Since it is the same code as the first code, we will omit it.  
 >OAuth not enabled  
 ```python
