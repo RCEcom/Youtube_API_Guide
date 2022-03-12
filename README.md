@@ -438,7 +438,7 @@ for item in respones["items"]:
   
   
   
-# I will use OAuth code enabled by default.  
+# I will use OAuth code enabled by default.([activated code](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=First%20check%20if%20the%20token%20exists.)) 
 
 >OAuth not enabled  
 ```python
@@ -488,7 +488,7 @@ for item in respones["items"]:
   
   
   
-# I will use OAuth code enabled by default.([activated code]())  
+# I will use OAuth code enabled by default.([activated code](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=First%20check%20if%20the%20token%20exists.)) 
 >Since it is the same code as the first code, we will omit it.  
 >OAuth not enabled  
 ```python
