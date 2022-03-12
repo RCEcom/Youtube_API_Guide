@@ -479,8 +479,50 @@ request = youtube.activities().list(
 
 
 respones = request.execute()
-
+#code you want.
 for item in respones["items"]:
     print(item["contentDetails"]["upload"]["videoId"])
 ```  
->"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.      
+  
+  
+  
+  
+# I will use OAuth code enabled by default. 
+>Since it is the same code as the first code, we will omit it.  
+>OAuth not enabled  
+```python
+youtube = build("youtube", "v3", credentials=credentials)
+
+
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                channelId="(your channelId)"
+        )
+
+
+respones = request.execute()
+
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["description"])
+```
+
+
+>OAuth enabled(Link with my account)  
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+      
+        )
+
+
+respones = request.execute()
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["description"])
+```
+
+
+
