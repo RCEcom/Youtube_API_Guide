@@ -431,53 +431,13 @@ for item in respones["items"]:
 > 4)사용자가올린모든영상업로드된시간보기  
 > 5)사용자가올린모든영상제목보기  
 > 6)사용자가올린모든영상썸네일사진보기  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
 # I will use OAuth code enabled by default.  
 
 >OAuth not enabled  
