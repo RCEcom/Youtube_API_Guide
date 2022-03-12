@@ -425,7 +425,7 @@ for item in respones["items"]:
 
 # API List!(Parsing is possible even if it is not for a user account authenticated by OAuth. However, if they match, OAuth will be enabled. Please remember. Or you can change it to parse for my account with specific parameters.)  
 + 활동(Activities)
-> 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=the%20final%20code.-,API,-List!(Parsing%20is)  
+> 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=API%20List!(Parsing%20is%20possible%20even%20if%20it%20is%20not%20for%20a%20user%20account%20authenticated%20by%20OAuth.%20However%2C%20if%20they%20match%2C%20OAuth%20will%20be%20enabled.%20Please%20remember.%20Or%20you%20can%20change%20it%20to%20parse%20for%20my%20account%20with%20specific%20parameters.)  
 > 2)사용자가올린모든비디오영상설명보기,영상설명보기,모든영상설명보기,비디오영상설명  
 > 3)사용자채널id출력  
 > 4)사용자가올린모든영상업로드된시간보기  
