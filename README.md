@@ -418,7 +418,7 @@ for item in respones["items"]:
 
 # API List!(Parsing is possible even if it is not for a user account authenticated by OAuth. However, if they match, OAuth will be enabled. Please remember. Or you can change it to parse for my account with specific parameters.)  
 + 활동(Activities)
-> 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=I%20will%20use%20OAuth%20code%20enabled%20by%20default.)  
+> 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=channelId)%22%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20maxResults%3D(number)%0A%20%20%20%20%20%20%20%20)-,Read%20Before%20Use,-OAuth%20not%20enabled)    
 > 2)[사용자가올린모든비디오영상설명보기,영상설명보기,모든영상설명보기,비디오영상설명](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=value%20for%20it.-,I%20will%20use%20OAuth%20code%20enabled%20by%20default.,-Since%20it%20is)  
 > 3)사용자채널id출력  
 > 4)사용자가올린모든영상업로드된시간보기  
