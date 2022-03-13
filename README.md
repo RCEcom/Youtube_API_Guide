@@ -427,7 +427,7 @@ for item in respones["items"]:
   
   
   
-#This is the prep code before writing the activity-related API.
+# This is the prep code before writing the activity-related API.
 ```python
 youtube = build("youtube", "v3", developerKey=API_key)
 
@@ -460,7 +460,7 @@ request = youtube.activities().list(
   
   
 
-#[Read Before Use]()  
+# [Read Before Use]()  
 >OAuth not enabled  
 ```python
 #code you want.
