@@ -188,6 +188,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
      
 #Get Oauth Certificate Access File
+#scopes : The scopes url pursued by each function is different.
 flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json", scopes=["https://www.googleapis.com/auth/youtube.readonly"])
 
 flow.run_local_server(port=8080, prompt="consent")
