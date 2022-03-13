@@ -432,6 +432,7 @@ for item in respones["items"]:
 >![image](https://user-images.githubusercontent.com/87273590/158065067-17d9a58e-b2bb-42db-99df-93450938b453.png)  
 >Then you can see all the responses for that function. If you want to know more, just scroll down and you will find the explanation.  
 >![image](https://user-images.githubusercontent.com/87273590/158065114-53bd882b-815e-4075-bedd-622601ee278f.png)  
+# So now let's enjoy.
   
 # This is the prep code before writing the activity-related API.
 ```python
