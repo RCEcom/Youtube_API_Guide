@@ -484,10 +484,181 @@ request = youtube.activities().list(
 for item in respones["items"]:
     print(item["contentDetails"]["upload"]["videoId"])
 ```  
-    
+
+
+
+# [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
+>OAuth not enabled  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["description"])
+```  
+
+
+>OAuth enabled(Link with my account)  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.   
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+        )
+```   
   
   
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["description"])
+```  
   
- 
+  
+# [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
+>OAuth not enabled  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["channelId"])
+```  
+
+
+>OAuth enabled(Link with my account)  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.   
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+        )
+```   
+  
+  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["channelId"])
+```  
+  
+# [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
+>OAuth not enabled  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["publishedAt"])
+```  
+
+
+>OAuth enabled(Link with my account)  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.   
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+        )
+```   
+  
+  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["publishedAt"])
+```  
+  
+# [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
+>OAuth not enabled  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["title"])   
+```  
+
+
+>OAuth enabled(Link with my account)  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.   
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+        )
+```   
+  
+  
+```python
+#code you want.
+for item in respones["items"]:
+    print(item["snippet"]["title"])   
+```  
+  
+  
+ # [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
+>OAuth not enabled  
+```python
+#code you want.
+for item in respones["items"]:
+    try:
+        print("="*100)
+        print("<default scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["default"]["width"],
+                                                   item["snippet"]["thumbnails"]["default"]["height"]))
+        print("<medium scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["medium"]["width"],
+                                                   item["snippet"]["thumbnails"]["medium"]["height"]))
+        print("<high scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["high"]["width"],
+                                                   item["snippet"]["thumbnails"]["high"]["height"]))
+        print("<standard scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["standard"]["width"],
+                                                   item["snippet"]["thumbnails"]["standard"]["height"]))
+        print("<maxres scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["maxres"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["maxres"]["width"],
+                                                   item["snippet"]["thumbnails"]["maxres"]["height"]))
+    except KeyError:
+        break
+```  
+
+
+>OAuth enabled(Link with my account)  
+>"mine=True"If this happens, instead of entering the channel ID, it recognizes the token and finds a value for it.   
+```python
+request = youtube.activities().list(
+                part="snippet,contentDetails",
+                mine=True
+        )
+```   
+  
+  
+```python
+#code you want.
+for item in respones["items"]:
+    try:
+        print("="*100)
+        print("<default scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["default"]["width"],
+                                                   item["snippet"]["thumbnails"]["default"]["height"]))
+        print("<medium scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["medium"]["width"],
+                                                   item["snippet"]["thumbnails"]["medium"]["height"]))
+        print("<high scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["high"]["width"],
+                                                   item["snippet"]["thumbnails"]["high"]["height"]))
+        print("<standard scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["default"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["standard"]["width"],
+                                                   item["snippet"]["thumbnails"]["standard"]["height"]))
+        print("<maxres scale>")
+        print("URL : {}".format(item["snippet"]["thumbnails"]["maxres"]["url"]))
+        print("jpg width : {}, height : {}".format(item["snippet"]["thumbnails"]["maxres"]["width"],
+                                                   item["snippet"]["thumbnails"]["maxres"]["height"]))
+    except KeyError:
+        break
+```  
+  
 
 
