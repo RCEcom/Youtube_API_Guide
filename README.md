@@ -414,18 +414,24 @@ for item in respones["items"]:
 
 
 
-
-
-# API List!(Parsing is possible even if it is not for a user account authenticated by OAuth. However, if they match, OAuth will be enabled. Please remember. Or you can change it to parse for my account with specific parameters.)  
-+ 활동(Activities)
+# YouTube API simple usage :)  
 > 1)[사용자가올린모든영상id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use)    
 > 2)[사용자가올린모든비디오영상설명보기,영상설명보기,모든영상설명보기,비디오영상설명](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use-1)  
 > 3)[사용자채널id출력](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use-2)  
 > 4)[사용자가올린모든영상업로드된시간보기](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use-3)  
 > 5)[사용자가올린모든영상제목보기](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use-4)  
 > 6)[사용자가올린모든영상썸네일사진보기](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#read-before-use-5)  
-  
-  
+
+# How to find and write APIs yourself.  
+>![image](https://user-images.githubusercontent.com/87273590/158064905-4eeb3276-845c-4fbf-95f9-adadedccc861.png)  
+>Click to select the desired function  
+>![image](https://user-images.githubusercontent.com/87273590/158064952-935c4fd7-c20e-4e90-bfaf-1bd95ce9e748.png)  
+>![image](https://user-images.githubusercontent.com/87273590/158065031-7378b31e-5029-4ab7-bf6f-673cae31a193.png)  
+>![image](https://user-images.githubusercontent.com/87273590/158065036-5007c771-ff62-483a-a757-3de987b0f9db.png)  
+>activities Resource click  
+>![image](https://user-images.githubusercontent.com/87273590/158065067-17d9a58e-b2bb-42db-99df-93450938b453.png)  
+>Then you can see all the responses for that function. If you want to know more, just scroll down and you will find the explanation.  
+>![image](https://user-images.githubusercontent.com/87273590/158065114-53bd882b-815e-4075-bedd-622601ee278f.png)  
   
 # This is the prep code before writing the activity-related API.
 ```python
