@@ -460,7 +460,7 @@ request = youtube.activities().list(
   
   
 
-# [Read Before Use]()  
+# [Read Before Use](https://github.com/RCEcom/Youtube_API_Guide/blob/main/README.md#:~:text=This%20is%20the%20prep%20code%20before%20writing%20the%20activity%2Drelated%20API.)  
 >OAuth not enabled  
 ```python
 #code you want.
