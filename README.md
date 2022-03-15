@@ -424,7 +424,112 @@ for item in respones["items"]:
 >Then you can see all the responses for that function. If you want to know more, just scroll down and you will find the explanation.  
 >![image](https://user-images.githubusercontent.com/87273590/158065114-53bd882b-815e-4075-bedd-622601ee278f.png)  
 # So now let's enjoy.
-  
+
+#[+]Even looking at the parameters, I don't know how to write the code.  
+#It is natural. In this case, it is good to see the code provided by the API documentation, but there are many parts that I do not understand.  
+#![image](https://user-images.githubusercontent.com/87273590/158387543-6759317e-320b-41fa-b60b-71904e5586af.png)  
+#It's okay though. We take only what we want!  
+#![image](https://user-images.githubusercontent.com/87273590/158387684-cc7b149a-03e4-45e9-a0ff-c477f1445105.png)  
+#![image](https://user-images.githubusercontent.com/87273590/158387713-790d39a5-c758-4c56-87bb-9e11c5e76289.png)  
+#There are two functions. One is a service connection, and the other is a code that directly executes the video uploading code.  
+#Now, let's write code based on this. (You must have some ability to read code)  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+from apiclient.http import MediaFileUpload
+     
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json",
+                                                 scopes=["https://www.googleapis.com/auth/youtube.upload"])
+
+flow.run_local_server(port=8080, prompt="consent")
+
+credentials = flow.credentials
+
+
+youtube = build("youtube", "v3", credentials=credentials)
+```
+#We already had the code to connect the service.  
+#![image](https://user-images.githubusercontent.com/87273590/158393535-f09bebad-b976-4ddc-a36b-ec0d202cc29c.png)  
+#And we can basically send something like the picture above as the request body.  
+#You don't have to write them all down. Write down if necessary.  
+```python
+request_body = {
+        'snippet' : {
+            'title' : 'Test Uploading',
+            'description' : 'NULL :)',
+            'tags' : ['LOL', 'minecreaft', 'GTA5'],
+            'categoryId' : 20
+        },
+        'status' : {
+            'privacyStatus' : 'public',
+            'publicStatsViewable' : True
+        },
+        
+    }
+```
+#I added this:  
+```python
+insert_request = youtube.videos().insert(
+        part='snippet, status',
+        body=request_body,
+        media_body=MediaFileUpload(file, chunksize=-1, resumable=True)
+    ).execute()
+```
+#As for the video parameter, the part value was written for snippet and status, so select two.  
+```python
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
+from apiclient.http import MediaFileUpload
+     
+#Get Oauth Certificate Access File
+flow = InstalledAppFlow.from_client_secrets_file("client_secrets.json",
+                                                 scopes=["https://www.googleapis.com/auth/youtube.upload"])
+
+flow.run_local_server(port=8080, prompt="consent")
+
+credentials = flow.credentials
+
+
+youtube = build("youtube", "v3", credentials=credentials)
+
+
+def initialize_upload(youtube, file):
+    request_body = {
+        'snippet' : {
+            'title' : 'Test Uploading',
+            'description' : 'NULL :)',
+            'tags' : ['LOL', 'minecreaft', 'GTA5'],
+            'categoryId' : 20
+        },
+        'status' : {
+            'privacyStatus' : 'public',
+            'publicStatsViewable' : True
+        },
+        
+    }
+    insert_request = youtube.videos().insert(
+        part='snippet, status',
+        body=request_body,
+        media_body=MediaFileUpload(file, chunksize=-1, resumable=True)
+    ).execute()
+
+
+initialize_upload(youtube, "Test.MP4")
+```
+#at all code.
+#![image](https://user-images.githubusercontent.com/87273590/158394273-a234d122-be1b-489c-8f2c-b622cf77ed64.png)  
+#That's good.  
+#Video thumbnails are not selected. Do this yourself.  
+
+
+
+
+
 # This is the prep code before writing the activity-related API.
 ```python
 youtube = build("youtube", "v3", developerKey=API_key)
